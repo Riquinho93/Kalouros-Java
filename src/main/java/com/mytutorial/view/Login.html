@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<wicket:head>
+	<meta charset="UTF-8">
+	<title>Kalouros</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link rel="stylesheet" type="text/css" href="login.css">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">  -->
+</wicket:head>
+<body>
+ <!-- jQUery-->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!--  Ação para ocultar a div depois de 5 segundos -->
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function(){ 
+            setTimeout(function() {
+                $("#goaway").fadeOut().empty();
+            }, 4000);
+        }, false);
+    </script>
+     
+	<div id="goaway">
+		<span wicket:id="feedbackMessage"></span> 
+	</div>
+	<div class="bgimg">
+		<div class="centerdiv">
+			<img alt="img" src="Logo3_Small.PNG" id="profile">
+			<h2>Kalouros</h2>
+			<!-- <div class="alert alert-danger">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			 	<p wicket:id="feedbackMessage"></p> 
+
+			</div> -->
+			<!-- <p wicket:id="validacao"></p> -->
+			<!-- <p class="alert alert-danger" data-dismiss="alert" wicket:id="errorLogin"><span aria-hidden="true">&times;</span></p> -->
+			<form wicket:id="formularioLogin">
+				<div>
+					<input wicket:id="email" class="inputbox" type="text"
+						placeholder="email">
+				</div>
+
+				<div>
+					<input wicket:id="senha" class="inputbox" type="password"
+						placeholder="senha">
+				</div>
+				<br>
+				<div>
+					<button type="submit" name="submit">Ok</button>
+				</div>
+			</form>
+			<br>
+			 <div class="forget-section">
+				<a wicket:id="aberturaConta"><h4>Create account!</h4></a>
+			</div> 
+		</div>
+	</div>
+
+</body>
+</html>

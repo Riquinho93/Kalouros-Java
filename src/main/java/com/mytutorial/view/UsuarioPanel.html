@@ -1,0 +1,197 @@
+<!-- <!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<wicket:head>
+	<meta charset="UTF-8">
+	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link rel="stylesheet" href="estilo.css" type="text/css" media="screen">
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+		integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+		crossorigin="anonymous">
+</wicket:head> -->
+
+<wicket:panel>
+	<script language="JavaScript">
+		function mascara(t, mask) {
+			var i = t.value.length;
+			var saida = mask.substring(1, 0);
+			var texto = mask.substring(i)
+			if (texto.substring(0, 1) != saida) {
+				t.value += texto.substring(0, 1);
+			}
+		}
+	</script>
+	<div class="container-fluid">
+		<br /> <span id="" wicket:id="feedback" class="alert-danger"></span>
+		<div class="card">
+			<h5 class="card-header">Cadastro de Usuario</h5>
+			<div class="card-body">
+				<h3>Dados pessoais</h3>
+				<form wicket:id="formFunc">
+					<div class="row">
+						<div class="form-group col-sm-3">
+							<Label class="text">Situacao: </label> <select
+								wicket:id="situacao" class="form-control"></select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<label class="text">Nome: *</label> <input type="text"
+								class="form-control" wicket:id="nome"
+								placeholder="Digite o nome" />
+						</div>
+						<div class="form-group col-md-3">
+							<Label class="text2">Data de Nascimento: *</label> <input
+								wicket:id="dataNascimento" type="text" class="form-data"
+								placeholder="dd/MM/yyyy" />
+						</div>
+						<div class="col-md-3">
+							<div wicket:id="sexo" class="col-md-6">
+								<Label class="text2">Genero: *</label><br /> <input
+									wicket:id="sim" type="radio" name="group2" value="true">Masculino</input>
+								<input wicket:id="nao" type="radio" name="group2" value="false">Feminino</input>
+							</div>
+						</div>
+						<div class="form-group col-md-2">
+							<Label class="text">Funcao: </label> <select wicket:id="funcao"
+								class="form-control"></select>
+						</div>
+						<div class="col-md-3">
+							<label class="text">RG: *</label> <input wicket:id="identidade"
+								type="number" class="number form-control"
+								placeholder="Digite o n° do RG" />
+						</div>
+						<div class="col-md-3">
+							<label class="text">CPF: *</label> <input wicket:id="cpf"
+								type="number" class="number form-control"
+								placeholder="Digite o n° do CPF" />
+						</div>
+						<div class="col-md-2">
+							<label class="text">Cep: *</label> <input
+								wicket:id="endereco.cep" name="cep" id="#cep" type="text"
+								class="form-control" size="10" maxlength="9"
+								onblur="pesquisacep(this.value);" placeholder="Digite o cep" />
+						</div>
+						<div class="col-md-4">
+							<label class="text">Logradouro: *</label> <input
+								wicket:id="endereco.logradouro" name="rua" id="rua" type="text"
+								class="form-control" placeholder="Digite o logradouro" />
+						</div>
+						<div class="col-md-2">
+							<label class="text">Numero: *</label> <input
+								wicket:id="endereco.numero" type="number"
+								class="number form-control" placeholder="Digite o n°" />
+						</div>
+
+						<div class="col-md-4">
+							<label class="text">Bairro: *</label> <input
+								wicket:id="endereco.bairro" name="bairro" id="bairro" size="40"
+								type="text" class="form-control" placeholder="Digite o bairro" />
+						</div>
+						<div class="col-md-4">
+							<label class="text">Cidade: *</label> <input
+								wicket:id="endereco.cidade" name="cidade" id="cidade" size="40"
+								type="text" class="form-control" placeholder="Digite a cidade" />
+						</div>
+						<div class="col-md-2">
+							<label class="text">Estado: *</label> <input
+								wicket:id="endereco.estado" name="uf" id="uf" size="2"
+								type="text" class="form-control" placeholder="Digite o estado" />
+						</div>
+						<div class="col-md-2">
+							<label class="text">Renda: *</label> <input wicket:id="renda"
+								type="number" class="number form-control" placeholder="0,0" />
+						</div>
+
+					</div>
+					<h3>Informações para contato</h3>
+					<div class="row">
+						<div class="col-md-4">
+							<label class="text">Telefone: *</label> <input type="text"
+								name="telefone" class="form-control" wicket:id="telefone"
+								placeholder="62 99999-9999"
+								onkeypress="mascara(this, '## #####-####')" maxlength="13" />
+						</div>
+						<div class="col-md-6">
+							<label class="text">Email:</label> <input type="text"
+								class="form-control" wicket:id="email"
+								placeholder="example@example.com" />
+						</div>
+					</div>
+					<!-- </form> -->
+					<br />
+					<button wicket:id="submit" class="btn btn-success" type="submit">Salvar</button>
+					<button wicket:id="voltar" type="button" class="btn btn-primary">Voltar</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Adicionando Javascript -->
+	<script type="text/javascript">
+		function limpa_formulário_cep() {
+			//Limpa valores do formulário de cep.
+			document.getElementById('rua').value = ("");
+			document.getElementById('bairro').value = ("");
+			document.getElementById('cidade').value = ("");
+			document.getElementById('uf').value = ("");
+		}
+
+		function meu_callback(conteudo) {
+			if (!("erro" in conteudo)) {
+				//Atualiza os campos com os valores.
+				document.getElementById('rua').value = (conteudo.logradouro);
+				document.getElementById('bairro').value = (conteudo.bairro);
+				document.getElementById('cidade').value = (conteudo.localidade);
+				document.getElementById('uf').value = (conteudo.uf);
+			} //end if.
+			else {
+				//CEP não Encontrado.
+				limpa_formulário_cep();
+				alert("CEP não encontrado.");
+			}
+		}
+
+		function pesquisacep(valor) {
+
+			//Nova variável "cep" somente com dígitos.
+			var cep = valor.replace(/\D/g, '');
+
+			//Verifica se campo cep possui valor informado.
+			if (cep != "") {
+
+				//Expressão regular para validar o CEP.
+				var validacep = /^[0-9]{8}$/;
+
+				//Valida o formato do CEP.
+				if (validacep.test(cep)) {
+
+					//Preenche os campos com "..." enquanto consulta webservice.
+					document.getElementById('rua').value = "...";
+					document.getElementById('bairro').value = "...";
+					document.getElementById('cidade').value = "...";
+					document.getElementById('uf').value = "...";
+
+					//Cria um elemento javascript.
+					var script = document.createElement('script');
+
+					//Sincroniza com o callback.
+					script.src = 'https://viacep.com.br/ws/' + cep
+							+ '/json/?callback=meu_callback';
+
+					//Insere script no documento e carrega o conteúdo.
+					document.body.appendChild(script);
+
+				} //end if.
+				else {
+					//cep é inválido.
+					limpa_formulário_cep();
+					alert("Formato de CEP inválido.");
+				}
+			} //end if.
+			else {
+				//cep sem valor, limpa formulário.
+				limpa_formulário_cep();
+			}
+		};
+	</script>
+</wicket:panel>

@@ -1,0 +1,21 @@
+.alertMessage {
+	margin-left: 15px;
+	float: right;
+	line-height: 10px;
+	transition: 0.3s;
+	/* position: absolute;  */
+	align-content: flex-end;
+	right: 15px;
+	padding: 15px;
+}
+
+.closebtn {
+	margin-left: 15px;
+	color: white;
+	font-weight: bold;
+	float: right;
+	font-size: 22px;
+	line-height: 20px;
+	cursor: pointer;
+	transition: 0.3s;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<wicket:head>
+	<meta charset="utf-8" />
+</wicket:head>
+<body>
+	<wicket:panel>
+		<div class="container">
+			<div class="card">
+				<h5 class="card-header">Exclusão</h5>
+				<div class="card-body">
+					<div class="row">
+						<span wicket:id="msg">Mesagem de excluir</span><br />
+						<form wicket:id="resposta"><br />
+							<table style="width: 65%;" align="center">
+								<tr>
+									<td align="right"><input class="btn btn-danger" wicket:id="nao" type="submit"
+										value="Não" /></td>
+									<td align="left"><input class="btn btn-success" wicket:id="sim" type="submit"
+										value="Sim" /></td>
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</wicket:panel>
+</body>
+</html>

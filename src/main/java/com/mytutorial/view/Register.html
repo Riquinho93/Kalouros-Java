@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Kalouros</title>
+<link rel="stylesheet" type="text/css" href="solicitacaoConta.css">
+<link href="css/bootstrap.css" rel="stylesheet" media="screen">
+</head>
+<body class="body">
+	<br />
+
+	<div class="container">
+		<!-- TOPO -->
+		<div class="row topo">
+			<div class="row topo justify-context-between">
+				<a href="#"><img alt="img" src="Logo3_Small.PNG"></a>
+			</div>
+		</div>
+		<br />
+		<div class="centerdiv">
+			<h1>Make your Registry</h1>
+			<div class="container-fluid">
+				<h3>Personal Data</h3>
+				<form wicket:id="form">
+					<div class="row">
+						<div class="col-md-6">
+							<label for="nome" class="text">Name: *</label> <input type="text"
+								class="form-control" wicket:id="nome" name="nome"
+								placeholder="Name" />
+						</div>
+						<div class="col-md-6">
+							<label class="text">Email:</label> <input type="text"
+								class="form-control" wicket:id="email"
+								placeholder="example@example.com" />
+						</div>
+						<div class="col-md-6">
+							<label class="text">Password: *</label> <input type="password"
+								class="form-control" wicket:id="senha"
+								placeholder="password" />
+						</div>
+						<div class="col-md-6">
+							<label class="text">Confirm password: *</label> <input wicket:id="confirmarSenha"
+								type="password" class="number form-control"
+								placeholder="Confirm password" />
+						</div>
+						
+					</div>
+					<br />
+					<button wicket:id="submit" class="btn btn-success" type="submit">Sig up</button>
+					<button wicket:id="voltar" class="btn btn-primary" type="submit">back</button>
+				</form>
+			</div>
+			<br />
+		</div>
+		<!-- RODAPE -->
+		<div class="row">
+			<div class="col rodape">
+				<br /> <br />
+				<p>Desenvolvendo sistema de tutorial &#174;
+					Direitos Reservados</p>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>

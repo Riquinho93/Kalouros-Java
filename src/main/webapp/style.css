@@ -1,0 +1,57 @@
+/* TOPO */
+.body{
+	background-color: #004E95;
+	margin: 0px;
+	
+}
+.container{
+    margin: 10px 0px 10px 20 px;
+    padding: 10px;
+    background-color: #20b2aa;
+}
+/*Cor reserva #20b2aa 
+#e0e094*/
+.topo {
+    margin: 5px 5px;
+    padding: 5px;
+}
+    .logo{
+        width: 100px;
+    }
+
+/* MENU HORIZONTAL */
+.menu-horizontal{
+    padding: 5px 5px;
+    background-color: #3D3D3D;
+    border-radius: 10px;
+    margin: 0px 5px 8px 0px;
+}
+.menu-horizontal a {
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+/* MEIO */
+.meio{
+    margin: 5px 0px;
+}
+
+
+/* MENU VERTICAL */
+.menu-vertical{
+    background-color: #F8F8FF;
+    border-radius: 8px;
+    padding: 8px;
+}
+.menu-vertical a {
+    text-transform: uppercase;
+}
+.menu-vertical .item-info{
+    font-weight: bold;
+}
+
+
+/*RODAPE*/
+.rodape p {
+    text-align: center;
+}
