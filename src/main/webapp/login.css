@@ -71,9 +71,8 @@ button {
 	height: 30px;
 	display: block;
 	margin: auto;
-	color-text: white;
-	background-color: dodgerblue;
-	text-transform: uppercase;
+	background-color: white;
+	/* text-transform: uppercase; */
 	font-size: 0.8em;
 	text-align: right;
 	padding-right: 20px;

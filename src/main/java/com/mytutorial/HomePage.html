@@ -13,54 +13,23 @@
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </wicket:head>
 <body class="body">
-	<br />
-	<div class="container">
+	<div class="topo">
 		<!-- TOPO -->
-		<div class="row topo">
-			<div class="row topo justify-context-between">
-				<a href="#"><img alt="img" src="Logo3_Small.PNG"></a>
-			</div>
+		<a wicket:id="sair" class="btn btn-light" style="float: right;">Sign
+			out </a> <a wicket:id="telaPrincipal" class="navbar-left logo"><img
+			src="Logo3_Small.PNG"></a>
+	</div>
+	<div class="meio">
 
+		<!-- CONTEUDO -->
+		<div class="col-12">
+			<wicket:child />
 		</div>
+	</div>
 
-		<!-- MENU HORIZONTAL -->
-		<div class="row menu-horizontal col-12">
-			<div class="col-12">
-				<ul class="nav">
-					<li class="nav-item"><a wicket:id="telaPrincipal"
-						class="nav-link">Home</a></li>
-					<li class="nav-item"><a wicket:id="bancoForm" class="nav-link">Service</a></li>
-					<li class="nav-item"><a wicket:id="contaForm" class="nav-link">Sport</a></li>
-					<li class="nav-item"><a wicket:id="contatoForm"
-						class="nav-link">History</a></li>
-				</ul>
-			</div>
-		</div>
-
-		<!-- MEIO -->
-		<div class="row meio">
-			<!-- MENU VERTICAL -->
-			<div class="col-2 menu-vertical">
-				<ul class="nav flex-column">
-					<li class="nav-item"><a href="#" class="nav-link">Schedule</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">Map</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">Contacts</a></li>
-					<li class="nav-item"><a wicket:id="sair" class="nav-link">Sign out</a></li>
-				</ul>
-			</div>
-
-			<!-- CONTEUDO -->
-			<div class="col-10">
-				<wicket:child />
-			</div>
-		</div>
-		<!-- RODAPE -->
-		<div class="row">
-			<div class="col rodape">
-				<br /> <br />
-				<p>Desenvolvendo sistema de tutorial &#174; Direitos Reservados</p>
-			</div>
-		</div>
+	<!-- RODAPE -->
+	<div class="rodape">
+		<p>Desenvolvendo sistema de tutorial &#174; Direitos Reservados</p>
 	</div>
 </body>
 </html>

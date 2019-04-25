@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.googlecode.genericdao.search.Search;
 import com.mytutorial.dao.UsuarioDao;
-import com.mytutorial.model.Conta;
 import com.mytutorial.model.Usuario;
 
 @Service

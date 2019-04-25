@@ -1,35 +1,53 @@
 package com.mytutorial.view;
 
-import java.util.List;
-
-import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.AjaxLink;
+import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-import com.googlecode.genericdao.search.Search;
 import com.mytutorial.HomePage;
-import com.mytutorial.model.Conta;
 import com.mytutorial.model.Usuario;
-import com.mytutorial.service.ContaService;
 import com.mytutorial.service.UsuarioService;
 
 public class TelaPrincipal extends HomePage {
 
 	private static final long serialVersionUID = 1L;
 
-	@SpringBean(name = "contaService")
-	private ContaService contaService;
+	@SpringBean(name = "usuarioService")
+	private UsuarioService usuarioService;
+
+	private Form<?> form = new Form<>("form");
+	private ModalWindow modalWindow;
 
 	public TelaPrincipal() {
 		this(new Usuario());
 	}
 
 	public TelaPrincipal(Usuario usuario) {
-		/*
-		 * add(new Label("usuario", conta.getUsuario().getNome())); add(new
-		 * Label("numeroConta", conta.getNumeroConta())); add(new Label("banco",
-		 * conta.getBanco().getNome())); add(new Label("saldo", conta.getSaldo()));
-		 * add(new Label("tipoConta", conta.getTipoConta()));
-		 */
+		modalWindow = new ModalWindow("modalWindow");
+		// Tamanho do Modal
+		modalWindow.setInitialHeight(500);
+		modalWindow.setInitialWidth(900);
+		modalWindow.setOutputMarkupId(true);
+		add(modalWindow);
+
+		// Criando o botão para o modal
+		add(new AjaxLink<String>("abrirModal") {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void onClick(AjaxRequestTarget target) {
+				TutorialPanel tutorialPanel = new TutorialPanel(modalWindow.getContentId()) {
+				};
+				tutorialPanel.setOutputMarkupId(true);
+				add(tutorialPanel);
+				modalWindow.setContent(tutorialPanel);
+				modalWindow.show(target);
+			}
+
+		});
 	}
 
 }

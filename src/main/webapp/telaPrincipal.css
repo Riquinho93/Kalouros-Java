@@ -1,0 +1,18 @@
+@charset "ISO-8859-1";
+.profile {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	position: relative;
+	top: -60px;
+}
+.coluna{
+  float: left;
+  width: 20%;
+  text-align: center;
+}
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}

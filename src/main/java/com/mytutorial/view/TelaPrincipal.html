@@ -1,11 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
+<wicket:head>
+	<meta charset="UTF-8">
+	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link rel="stylesheet" type="text/css" href="telaPrincipal.css">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">  -->
+</wicket:head>
 <body>
 	<wicket:extend>
-		<div class="container" style="background-color: white">
-			<div class="card">
-				<h2>Home</h2>
+		<div class="card">
+			<h5 class="card-header">Tutorials:</h5>
+			<div class="card-body">
+
+				<a href="#" wicket:id="abrirModal" class="btn btn-success"
+					margin:-2px;
+						style="float: right;">New <i
+					class="fas fa-plus"></i>
+				</a><br /> <br />
+				<!-- <div class="row"> -->
+				<!-- <form>
+					<div class="form-group">
+						<img alt="img" src="Logo3_Small.PNG" class="profile" id="profile">
+						<label for="profile">Map</label>
+					</div>
+				</form> -->
+				<div class="row">
+					<div class="coluna">
+						<figure class="html5">
+							<img src="ipbMap.jpg" class="rounded-circle" id="teste" alt="Tutorial de CSS" title="Map"
+								width="150" height="150" />
+							<figcaption><a href="#">Map</a></figcaption>
+						</figure>
+					</div>
+					<div class="coluna">
+						<figure class="html5">
+							<img src="Logo3_Small.PNG" class="rounded-circle" alt="Tutorial de CSS" title="Service"
+								width="150" height="150" />
+							<figcaption><a href="#">Service</a></figcaption>
+						</figure>
+					</div>
+				</div>
 			</div>
+			<div wicket:id="modalWindow"></div>
 		</div>
 	</wicket:extend>
 </body>

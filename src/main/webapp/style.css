@@ -1,57 +1,65 @@
 /* TOPO */
-.body{
-	background-color: #004E95;
-	margin: 0px;
-	
+.body {
+	background-color: #FFFFFF;
+	margin: 0 0 0px 0;
 }
-.container{
-    margin: 10px 0px 10px 20 px;
-    padding: 10px;
-    background-color: #20b2aa;
+
+.container {
+	margin: 5px 5px;
+	padding: 10px;
+	background-color: #F5F5F5;
 }
 /*Cor reserva #20b2aa 
 #e0e094*/
 .topo {
-    margin: 5px 5px;
-    padding: 5px;
+	margin: 5px 5px;
+	padding: 2px;
+	background-color: #FFFFFF;
 }
-    .logo{
-        width: 100px;
-    }
+
+.logo {
+	margin: 20px;
+	width: 50px;
+}
 
 /* MENU HORIZONTAL */
-.menu-horizontal{
-    padding: 5px 5px;
-    background-color: #3D3D3D;
-    border-radius: 10px;
-    margin: 0px 5px 8px 0px;
+.menu-horizontal {
+	padding: 5px 5px;
+	background-color: #3D3D3D;
+	border-radius: 10px;
+	margin: 0px 5px 8px 0px;
 }
+
 .menu-horizontal a {
-    text-transform: uppercase;
-    color: #FFFFFF;
+	text-transform: uppercase;
+	color: #FFFFFF;
 }
 
 /* MEIO */
-.meio{
-    margin: 5px 0px;
+.meio {
+	margin: 5px 5px;
+	padding: 10px;
+	background-color: #FFFFFF;
 }
-
 
 /* MENU VERTICAL */
-.menu-vertical{
-    background-color: #F8F8FF;
-    border-radius: 8px;
-    padding: 8px;
-}
-.menu-vertical a {
-    text-transform: uppercase;
-}
-.menu-vertical .item-info{
-    font-weight: bold;
+.menu-vertical {
+	background-color: #F8F8FF;
+	border-radius: 8px;
+	padding: 8px;
 }
 
+.menu-vertical a {
+	text-transform: uppercase;
+}
+
+.menu-vertical .item-info {
+	font-weight: bold;
+}
 
 /*RODAPE*/
 .rodape p {
-    text-align: center;
+	margin: 5px 5px;
+	text-align: center;
+	background-color: #FFFFFF;
 }
