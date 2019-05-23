@@ -19,7 +19,7 @@ public class DeletUsuario extends Panel {
 		this.user = answer;
 		Form<Usuario> form = new Form<>("resposta");
 
-		add(new Label("msg", "Deseja realmente excluir este Usuario?"));
+		add(new Label("msg", "Do you really want to delete this user?"));
 
 		// Se a resposta == sim
 		AjaxButton yesButton = new AjaxButton("sim") {

@@ -9,10 +9,31 @@
 <body>
 	<wicket:extend>
 		<div class="card">
-			<h5 class="card-header">Tutorials:</h5>
+			<h5 class="card-header">Tutorials</h5>
 			<div class="card-body">
+				<form wicket:id="form2">
+					<div class="form-row">
+						<!-- <div class="col-md-3">
+						<label for="category" class="text">Category: *</label> <select
+							type="text" name="category" placeholder="Category"></select>
+					</div> -->
+						<div class="col-md-3">
+							<label for="category" class="text">Category: *</label> <select
+								wicket:id="categoria" type="text" class="form-control" name="category"
+								placeholder="Category"></select>
+						</div>
+						<div class="col-md-4">
+							<label for="name" class="text">Name: *</label> <input
+								wicket:id="title" type="text" name="name" class="form-control"
+								placeholder="Searching...">
+						</div>
+						<br />
+					</div>
+					<a wicket:id="filtrar" class="btn btn-secondary"
+						style="float: right; color: white;">Filter</a>
+				</form>
 
-				<a href="#" wicket:id="abrirModal" class="btn btn-success"
+				<a href="#" wicket:id="tutorialForm" class="btn btn-success"
 					margin:-2px;
 						style="float: right;">New <i
 					class="fas fa-plus"></i>
@@ -24,24 +45,154 @@
 						<label for="profile">Map</label>
 					</div>
 				</form> -->
-				<div class="row">
-					<div class="coluna">
+				<!-- <table>
+						<thead>
+							<tr>
+								<th scope="col">name</th>
+							</tr>
+						</thead> -->
+				<tbody>
+					<tr>
+						<td class="text"></td>
+					</tr>
+				</tbody>
+				<div wicket:id="pag"></div>
+				<!-- </table> -->
+				<div class="row" wicket:id="theContainer">
+					<div class="coluna" wicket:id="listView">
 						<figure class="html5">
-							<img src="ipbMap.jpg" class="rounded-circle" id="teste" alt="Tutorial de CSS" title="Map"
-								width="150" height="150" />
-							<figcaption><a href="#">Map</a></figcaption>
+							<a wicket:id="vis"><img src="ipbMap.jpg"
+								class="rounded-circle" id="teste" alt="Tutorial de CSS"
+								title="Map" width="150" height="150" /></a>
+							<figcaption>
+								<a wicket:id="title"></a><a class="btn btn-default"
+									rel="tooltip" title="Edit"> <i class="fas fa-pencil-alt"></i>
+								</a><a class="btn btn-default modal-confirm" title="delet"> <i
+									class="fa fa-trash"></i>
+								</a>
+							</figcaption>
+						</figure>
+					</div>
+					<!-- <div class="coluna">
+						<figure class="html5">
+							<img src="services.png" class="rounded-circle"
+								alt="Tutorial de CSS" title="Service" width="150" height="150" />
+							<figcaption>
+								<a href="#">Services</a><a class="btn btn-default" rel="tooltip"
+									title="Edit"> <i class="fas fa-pencil-alt"></i>
+								</a><a class="btn btn-default modal-confirm" title="Excluir"> <i
+									class="fa fa-trash"></i>
+								</a>
+							</figcaption>
 						</figure>
 					</div>
 					<div class="coluna">
 						<figure class="html5">
-							<img src="Logo3_Small.PNG" class="rounded-circle" alt="Tutorial de CSS" title="Service"
-								width="150" height="150" />
-							<figcaption><a href="#">Service</a></figcaption>
+							<img src="sports.jpg" class="rounded-circle"
+								alt="Tutorial de CSS" title="Service" width="150" height="150" />
+							<figcaption>
+								<a href="#">Sports</a><a class="btn btn-default" rel="tooltip"
+									title="Edit"> <i class="fas fa-pencil-alt"></i>
+								</a><a class="btn btn-default modal-confirm" title="Excluir"> <i
+									class="fa fa-trash"></i>
+								</a>
+							</figcaption>
 						</figure>
 					</div>
+					<div class="coluna">
+						<figure class="html5">
+							<img src="link.jpg" class="rounded-circle" alt="Tutorial de CSS"
+								title="Service" width="150" height="150" />
+							<figcaption>
+								<a href="#">Links</a><a class="btn btn-default" rel="tooltip"
+									title="Edit"> <i class="fas fa-pencil-alt"></i>
+								</a><a class="btn btn-default modal-confirm" title="Excluir"> <i
+									class="fa fa-trash"></i>
+								</a>
+							</figcaption>
+						</figure>
+					</div>
+					<div class="coluna">
+						<figure class="html5">
+							<img src="ipbLogo.jpg" class="rounded-circle"
+								alt="Tutorial de CSS" title="Service" width="150" height="150" />
+							<figcaption>
+								<a href="#">History</a><a class="btn btn-default" rel="tooltip"
+									title="Edit"> <i class="fas fa-pencil-alt"></i>
+								</a><a class="btn btn-default modal-confirm" title="Excluir"> <i
+									class="fa fa-trash"></i>
+								</a>
+							</figcaption>
+						</figure>
+					</div>
+					<div class="coluna">
+						<figure class="html5">
+							<img src="events.gif" class="rounded-circle"
+								alt="Tutorial de CSS" title="Service" width="150" height="150" />
+							<figcaption>
+								<a href="#">Events</a><a class="btn btn-default" rel="tooltip"
+									title="Edit"> <i class="fas fa-pencil-alt"></i>
+								</a><a class="btn btn-default modal-confirm" title="Excluir"> <i
+									class="fa fa-trash"></i>
+								</a>
+							</figcaption>
+						</figure>
+					</div>
+					<div class="coluna">
+						<figure class="html5">
+							<img src="enroll-now.gif" class="rounded-circle"
+								alt="Tutorial de CSS" title="Service" width="150" height="150" />
+							<figcaption>
+								<a href="#">How to Enroll</a><a class="btn btn-default"
+									rel="tooltip" title="Edit"> <i class="fas fa-pencil-alt"></i>
+								</a><a class="btn btn-default modal-confirm" title="Excluir"> <i
+									class="fa fa-trash"></i>
+								</a>
+							</figcaption>
+						</figure>
+					</div>
+					<div class="coluna">
+						<figure class="html5">
+							<img src="socialAction.jpg" class="rounded-circle"
+								alt="Tutorial de CSS" title="Service" width="150" height="150" />
+							<figcaption>
+								<a href="#">Social Action</a><a class="btn btn-default"
+									rel="tooltip" title="Edit"> <i class="fas fa-pencil-alt"></i>
+								</a><a class="btn btn-default modal-confirm" title="Excluir"> <i
+									class="fa fa-trash"></i>
+								</a>
+							</figcaption>
+						</figure>
+					</div>
+					<div class="coluna">
+						<figure class="html5">
+							<img src="support.jpg" class="rounded-circle"
+								alt="Tutorial de CSS" title="Service" width="150" height="150" />
+							<figcaption>
+								<a href="#">Support Office</a><a class="btn btn-default"
+									rel="tooltip" title="Edit"> <i class="fas fa-pencil-alt"></i>
+								</a><a class="btn btn-default modal-confirm" title="Excluir"> <i
+									class="fa fa-trash"></i>
+								</a>
+							</figcaption>
+						</figure>
+					</div>
+					<div class="coluna">
+						<figure class="html5">
+							<img src="schedule.gif" class="rounded-circle"
+								alt="Tutorial de CSS" title="Service" width="150" height="150" />
+							<figcaption>
+								<a href="#">Schedule</a><a class="btn btn-default" rel="tooltip"
+									title="Edit"> <i class="fas fa-pencil-alt"></i>
+								</a><a class="btn btn-default modal-confirm" title="Excluir"> <i
+									class="fa fa-trash"></i>
+								</a>
+							</figcaption>
+						</figure>
+					</div> -->
 				</div>
 			</div>
-			<div wicket:id="modalWindow"></div>
+			<!-- 	<div wicket:id="modalWindow"></div> -->
 		</div>
 	</wicket:extend>
 </body>

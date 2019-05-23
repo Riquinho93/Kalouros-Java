@@ -36,6 +36,8 @@
 			<!-- passando a bean anotado -->
 			<list>
 				<value>com.mytutorial.model.Usuario</value>
+				<value>com.mytutorial.model.Categoria</value>
+				<value>com.mytutorial.model.Tutorial</value>
 			</list>
 		</property>
 		<!-- configurações para o hibernate properties -->
@@ -58,6 +60,24 @@
 	<bean id="usuarioService"
 		class="com.mytutorial.service.UsuarioService">
 		<property name="usuarioDao" ref="usuarioDao"></property>
+	</bean>
+
+	<bean id="categoriaDao" class="com.mytutorial.dao.CategoriaDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="categoriaService"
+		class="com.mytutorial.service.CategoriaService">
+		<property name="categoriaDao" ref="categoriaDao"></property>
+	</bean>
+
+	<bean id="tutorialDao" class="com.mytutorial.dao.TutorialDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="tutorialService"
+		class="com.mytutorial.service.TutorialService">
+		<property name="tutorialDao" ref="tutorialDao"></property>
 	</bean>
 
 	<bean id="transactionManager"

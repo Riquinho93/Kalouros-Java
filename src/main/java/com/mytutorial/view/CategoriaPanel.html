@@ -1,0 +1,20 @@
+<wicket:panel>
+	<div class="container-fluid">
+		
+		<div class="card">
+			<h5 class="card-header">Create Category</h5>
+			<div class="card-body">
+				<form wicket:id="form" class="form">
+					<div class="form-group">
+						<label for="nome" class="text">Name: *</label> <input wicket:id="nome" type="text"
+							class="form-control" name="name" placeholder="Name" />
+					</div>
+					<br />
+						<button
+							class="btn btn-success" wicket:id="submit" type="submit">Save</button>
+						<button type="button" class="btn btn-primary">Cancel</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</wicket:panel>

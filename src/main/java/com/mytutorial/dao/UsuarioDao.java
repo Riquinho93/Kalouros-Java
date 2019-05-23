@@ -21,8 +21,7 @@ public class UsuarioDao extends GenericDao<Usuario, Serializable>{
 	}
 //	@Transactional(readOnly = true)
 	public Usuario alterar(Integer id) {
-		String hql = "select f from Usuario f left join fetch f.endereco e "
-				+ "where f.id = :id";
+		String hql = "select f from Usuario f";
 		
 		Query query = getSessionFactory().getCurrentSession().createQuery(hql);
 		query.setParameter("id", id);

@@ -17,46 +17,40 @@
 			function sucessCadastro() {
 				swal("Cadastrado com sucesso!", "!", "success");
 			}
-			function sucessDelet(){
+			function sucessDelet() {
 				swal("Cadastrado excluido com sucesso!", "!", "success");
 			}
 		</script>
-		
-		<div class="container" style="background-color: white"><br />
-			<h1>Usuarios</h1>
-			<br>
-			<div class="container-fluid">
+
+		<div class="card">
+			<h5 class="card-header">Users</h5>
+			<div class="card-body">
 				<form wicket:id="form2">
 					<div class="form-row">
 						<div class="col-sm-4">
-							<label type="text">Nome</label> <input wicket:id="nome"
-								type="text" class="form-control" placeholder="Informe o nome">
+							<label type="text">Name</label> <input wicket:id="nome"
+								type="text" class="form-control" placeholder="Searching...">
 						</div>
 					</div>
 					<br /> <a wicket:id="filtrar" class="btn btn-secondary"
-						style="float: right; color: white;">Filtrar</a>
+						style="float: right; color: white;">Filter</a>
 				</form>
 				<div>
 					<a class="btn btn-success" margin:-2px; wicket:id="viewLink"
-						style="float: right;">Novo <i class="fas fa-plus"></i>
+						style="float: right;">New <i class="fas fa-plus"></i>
 					</a><br /> <br />
-					<button wicket:id="relatorio" type="button" class="btn btn-light" title="Gerar PDF"style="float: right;">PDF
-					<i class="fas fa-print"></i></button>
 				</div>
 			</div>
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th scope="col">Nome</th>
-						<th scope="col">Telefone</th>
-						<th scope="col">Ações</th>
+						<th scope="col">Name</th>
+						<th scope="col" class="text-center">Actions</th>
 					</tr>
 				</thead>
 				<tbody wicket:id="theContainer">
 					<tr wicket:id="listView">
 						<td class="text" wicket:id="nome"></td>
-						<td class="text" wicket:id="telefone"></td>
-						<!-- <td class="text" wicket:id="endereco"></td> -->
 						<td class="text-center"><a wicket:id="alterar"
 							class="btn btn-default" rel="tooltip" title="Editar"> <i
 								class="fas fa-pencil-alt"></i>

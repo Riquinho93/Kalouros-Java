@@ -19,20 +19,19 @@ public class Register extends WebPage {
 	private static final long serialVersionUID = 1L;
 
 	private Form<Usuario> form;
+	private Usuario usuario;
 
 	@SpringBean(name = "usuarioService")
 	private UsuarioService usuarioService;
 
 	public Register() {
-
-		Usuario usuario = new Usuario();
+		usuario = new Usuario();
 		form = new Form<Usuario>("form", new CompoundPropertyModel<Usuario>(usuario));
 		TextField<String> nome = new TextField<>("nome");
 		TextField<String> email = new TextField<String>("email");
 		PasswordTextField senha = new PasswordTextField("senha");
 		PasswordTextField confirmarSenha = new PasswordTextField("confirmarSenha");
-		
-		
+
 		nome.setOutputMarkupId(true);
 		email.setOutputMarkupId(true);
 		senha.setOutputMarkupId(true);
@@ -44,7 +43,6 @@ public class Register extends WebPage {
 
 		form.add(nome, email, senha, confirmarSenha);
 
-		
 		AjaxButton button = new AjaxButton("submit") {
 
 			private static final long serialVersionUID = 1L;
@@ -55,6 +53,10 @@ public class Register extends WebPage {
 				Usuario user = (Usuario) form.getModelObject();
 				user.setPerfil(Perfil.USUARIO);
 				usuarioService.SalvarOuAlterar(user);
+				usuario = new Usuario();
+				form.clearInput();
+				form.modelChanged();
+				form.setDefaultModelObject(user);
 				target.add(nome, email, senha, confirmarSenha);
 
 				setResponsePage(Login.class);

@@ -1,0 +1,59 @@
+<body>
+	<wicket:extend>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<script type="text/javascript">
+			function sucessCadastro() {
+				swal("Cadastrado com sucesso!", "!", "success");
+			}
+			function sucessDelet() {
+				swal("Cadastrado excluido com sucesso!", "!", "success");
+			}
+		</script>
+
+		<div class="card">
+			<h5 class="card-header">Category</h5>
+			<div class="card-body">
+				<form wicket:id="form2">
+					<div class="form-row">
+						<div class="col-sm-4">
+							<label type="text">Name</label> <input wicket:id="nome"
+								type="text" class="form-control" placeholder="Seraching...">
+						</div>
+					</div>
+					<br /> <a wicket:id="filtrar" class="btn btn-secondary"
+						style="float: right; color: white;">Filter</a>
+				</form>
+				<div>
+					<a wicket:id="abrirModalCategoria" class="btn btn-success"
+						margin:-2px;
+						style="float: right;">New <i
+						class="fas fa-plus"></i>
+					</a><br /> <br />
+				</div>
+			</div>
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th scope="col">Name</th>
+						<th scope="col" class="text-center">Action</th>
+					</tr>
+				</thead>
+				<tbody wicket:id="theContainer">
+					<tr wicket:id="listview">
+						<td wicket:id="nome" class="text"></td>
+						<td class="text-center"><a class="btn btn-default"
+							rel="tooltip" wicket:id="edit" title="Edit"> <i
+								class="fas fa-pencil-alt"></i>
+						</a> <a wicket:id="delet" class="btn btn-default modal-confirm"
+							title="Delete"> <i class="fa fa-trash"></i>
+						</a></td>
+					</tr>
+				</tbody>
+				<div wicket:id="pag"></div>
+			</table>
+			<div wicket:id="modalWindowDel"></div>
+			<div wicket:id="modalCategoria"></div>
+			<br />
+		</div>
+	</wicket:extend>
+</body>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<wicket:head>
+	<script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
+</wicket:head>
+<body>
+	<wicket:extend>
+		<div class="container-fluid" style="z-index: 0">
+			<br /> <span id="" class="alert-danger"></span>
+			<div class="card">
+				<h5 class="card-header">Create Tutorial</h5>
+				<div class="card-body">
+					<form wicket:id="form" class="row">
+						<div class="form-group col-md-12">
+							<label for="nome" class="text">Title: *</label> <input
+								wicket:id="title" type="text" class="form-control" name="title"
+								placeholder="Title" />
+						</div>
+						<div class="form-group col-md-4">
+							<label for="category" class="text">Category: *</label> <select
+								wicket:id="categoria" type="text" class="form-control"
+								name="category" placeholder="Category"></select>
+						</div>
+
+						<div class="form-group col-md-4">
+							<input type="file" name="customFile"
+								class="custom-file-input form-control" id="customFile">
+							<label class="custom-file-label form-control" for="customFile">Choose
+								image</label>
+						</div>
+
+						<div class="form-group col-md-12">
+							<label for="exampleFormControlTextarea1">Enter something</label>
+							<textarea wicket:id="editor" class="form-control" name="editor1"
+								id="exampleFormControlTextarea1" rows="3"></textarea>
+						</div>
+						<br />
+						<div class="form-group col-md-4">
+							<button wicket:id="salvar" class="btn btn-success" type="submit">Save</button>
+							<button wicket:id="cancelar" type="button"
+								class="btn btn-primary">Cancel</button>
+						</div>
+					</form>
+					<script src="creditor.js"></script>
+					<script>
+						CKEDITOR.replace('editor1');
+					</script>
+				</div>
+			</div>
+			<br /> <br />
+		</div>
+	</wicket:extend>
+</body>
+</html>

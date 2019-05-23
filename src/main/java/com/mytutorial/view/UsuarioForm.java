@@ -1,9 +1,6 @@
 package com.mytutorial.view;
 
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.wicket.Component;
@@ -15,35 +12,25 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PageableListView;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.LoadableDetachableModel;
-import org.apache.wicket.request.handler.resource.ResourceStreamRequestHandler;
-import org.apache.wicket.request.resource.ContentDisposition;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.apache.wicket.util.resource.AbstractResourceStreamWriter;
 
 import com.googlecode.genericdao.search.Search;
 import com.mytutorial.HomePage;
-import com.mytutorial.Relatorio.RelatorioUsuario;
 import com.mytutorial.model.Endereco;
 import com.mytutorial.model.Usuario;
-import com.mytutorial.service.EnderecoService;
 import com.mytutorial.service.UsuarioService;
-
-import net.sf.jasperreports.engine.JRException;
 
 public class UsuarioForm extends HomePage {
 
 	private static final long serialVersionUID = 2474313326427632580L;
 
-	private Form<Usuario> formFunc = new Form<>("formFunc");
 	// private Form<Endereco> formEnd;
 	private Form<Usuario> form2;
-	private Endereco endereco;
 	private List<Usuario> listaUsuarios = new ArrayList<>();
 	private PageableListView<Usuario> listView;
 	private LoadableDetachableModel<List<Usuario>> atualizarLista;
@@ -52,21 +39,14 @@ public class UsuarioForm extends HomePage {
 	private ModalWindow modalWindowDel;
 	@SpringBean(name = "usuarioService")
 	private UsuarioService usuarioService;
-	@SpringBean(name = "enderecoService")
-	private EnderecoService enderecoService;
+
 	private Usuario filtrar;
 
 	public UsuarioForm() {
 
-		endereco = new Endereco();
-		// formEnd = new Form<>("formEnd", new
-		// CompoundPropertyModel<Endereco>(endereco));
-
 		listaUsuarios = usuarioService.listar();
 
 		add(filtrar());
-
-		add(gerarRelatorio(listaUsuarios));
 
 		// add(formEnd);
 
@@ -75,8 +55,8 @@ public class UsuarioForm extends HomePage {
 
 		modalWindow = new ModalWindow("modalWindow");
 		// Tamanho do Modal
-		modalWindow.setInitialHeight(750);
-		modalWindow.setInitialWidth(1200);
+		modalWindow.setInitialHeight(450);
+		modalWindow.setInitialWidth(650);
 		modalWindow.setOutputMarkupId(true);
 		add(modalWindow);
 
@@ -193,8 +173,7 @@ public class UsuarioForm extends HomePage {
 
 			@Override
 			public void onClick(AjaxRequestTarget target) {
-				Usuario user = usuarioService.alterar(usuario.getId());
-				UsuarioPanel funcionarioPanel = new UsuarioPanel(modalWindow.getContentId(), user) {
+				UsuarioPanel usuarioPanel = new UsuarioPanel(modalWindow.getContentId(), usuario) {
 
 					private static final long serialVersionUID = 1L;
 
@@ -207,13 +186,12 @@ public class UsuarioForm extends HomePage {
 						modalWindow.close(target);
 					};
 				};
-				funcionarioPanel.setOutputMarkupId(true);
-				modalWindow.setContent(funcionarioPanel);
+				usuarioPanel.setOutputMarkupId(true);
+				modalWindow.setContent(usuarioPanel);
 				modalWindow.show(target);
 			}
 		};
 		editar.setOutputMarkupId(true);
-		formFunc.add(editar);
 		return editar;
 	}
 
@@ -227,12 +205,12 @@ public class UsuarioForm extends HomePage {
 
 			@Override
 			public void onClick(AjaxRequestTarget target) {
-				DeletUsuario deletFuncionario = new DeletUsuario(modalWindowDel.getContentId(), answer) {
+				DeletUsuario deletUsuario= new DeletUsuario(modalWindowDel.getContentId(), answer) {
 
 					private static final long serialVersionUID = 1L;
 
-					public void executarAoExcluir(AjaxRequestTarget target, Usuario funcionario) {
-						if (funcionario.isAnswer() == true) {
+					public void executarAoExcluir(AjaxRequestTarget target, Usuario usuario) {
+						if (usuario.isAnswer() == true) {
 							// enderecoService.excluir(index);
 							usuarioService.excluir(index);
 							listaUsuarios = usuarioService.listar();
@@ -242,59 +220,13 @@ public class UsuarioForm extends HomePage {
 						modalWindowDel.close(target);
 					};
 				};
-				deletFuncionario.setOutputMarkupId(true);
-				modalWindowDel.setContent(deletFuncionario);
+				deletUsuario.setOutputMarkupId(true);
+				modalWindowDel.setContent(deletUsuario);
 				modalWindowDel.show(target);
 			}
 		};
 		button.setOutputMarkupId(true);
-		formFunc.add(button);
 		return button;
-	}
-
-	// Gerar relatorio de Produto
-	public Link<?> gerarRelatorio(List<Usuario> user) {
-		final RelatorioUsuario r = new RelatorioUsuario();
-		final HashMap<String, Object> usuarios = new HashMap<String, Object>();
-		// Chave para o Jasper
-		usuarios.put("user", user);
-		Link<?> button = new Link<Object>("relatorio") {
-
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public void onClick() {
-				try {
-					final byte[] bytes;
-					bytes = r.gerarRelatorio(usuarios);
-					if (bytes != null) {
-						AbstractResourceStreamWriter Stream = new AbstractResourceStreamWriter() {
-
-							private static final long serialVersionUID = 1L;
-
-							@Override
-							public void write(OutputStream output) throws IOException {
-								output.write(bytes);
-								output.close();
-							}
-
-						};
-
-						ResourceStreamRequestHandler handler = new ResourceStreamRequestHandler(Stream);
-						handler.setContentDisposition(ContentDisposition.ATTACHMENT);
-						// nome do pdf
-						handler.setFileName("Usuarios.pdf");
-						getRequestCycle().scheduleRequestHandlerAfterCurrent(handler);
-					}
-				} catch (JRException e) {
-					e.printStackTrace();
-				}
-
-			}
-		};
-		button.setOutputMarkupId(true);
-		return button;
-
 	}
 
 }

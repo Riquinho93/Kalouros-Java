@@ -1,7 +1,11 @@
 /* TOPO */
 .body {
-	background-color: #FFFFFF;
+	background-color: #6495ED;
 	margin: 0 0 0px 0;
+}
+.logo2 {
+	margin: 20px;
+	width: 25px;
 }
 
 .container {
