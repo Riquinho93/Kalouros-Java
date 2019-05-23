@@ -50,11 +50,11 @@ public class CategoriaForm extends HomePage {
 		add(divConteiner());
 		add(filtrar());
 
-		// Modal Windows
+		// Modal Window do delete
 		modalWindowDel = new ModalWindow("modalWindowDel");
-		// Tamanho do Modal
-		modalWindowDel.setInitialHeight(150);
-		modalWindowDel.setInitialWidth(250);
+		// Tamanho
+		modalWindowDel.setInitialHeight(250);
+		modalWindowDel.setInitialWidth(350);
 		modalWindowDel.setOutputMarkupId(true);
 		add(modalWindowDel);
 
@@ -78,6 +78,8 @@ public class CategoriaForm extends HomePage {
 					public void executarAoSalvar(AjaxRequestTarget target, Categoria categoria) {
 						categoriaService.SalvarOuAlterar(categoria);
 						categoriaModels.add(categoria);
+						categoriaModels = categoriaService.listar();
+						target.appendJavaScript("sucessCadastro();");
 						target.add(listContainer);
 
 						modalCategoria.close(target);
@@ -118,7 +120,7 @@ public class CategoriaForm extends HomePage {
 				item.add(new Label("nome", user.getNome()));
 				item.add(editando(user));
 				item.add(removendo(user.getId()));
-	//			item.add(filtrar());
+				// item.add(filtrar());
 
 			}
 
@@ -187,9 +189,10 @@ public class CategoriaForm extends HomePage {
 						if (categoriaModel.isAnswer() == true) {
 							// colecaoModels.remove(index);
 							categoriaService.excluir(index);
+							categoriaModels = categoriaService.listar();
+							target.appendJavaScript("sucessDelet();");
+							target.add(listContainer);
 						}
-						target.add(listContainer);
-
 						modalWindowDel.close(target);
 					};
 				};

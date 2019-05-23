@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tutorial")
@@ -33,6 +34,9 @@ public class Tutorial implements Serializable {
 	private Categoria categoria;
 
 	private String editor;
+
+	@Transient
+	protected boolean answer;
 
 	public Integer getId() {
 		return id;
@@ -64,6 +68,14 @@ public class Tutorial implements Serializable {
 
 	public void setEditor(String editor) {
 		this.editor = editor;
+	}
+
+	public boolean isAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(boolean answer) {
+		this.answer = answer;
 	}
 
 	public static long getSerialversionuid() {

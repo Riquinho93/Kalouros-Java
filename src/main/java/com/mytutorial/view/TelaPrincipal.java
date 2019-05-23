@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
@@ -41,18 +42,18 @@ public class TelaPrincipal extends HomePage {
 
 	@SpringBean(name = "tutorialService")
 	private TutorialService tutorialService;
-	
+
 	@SpringBean(name = "categoriaService")
 	private CategoriaService categoriaService;
-	
+
 	private Categoria categoria;
 
 	private List<Tutorial> listaTutoriais = new LinkedList<>();
 	private List<Categoria> listaCategorias = new ArrayList<>();
-	private List<Tutorial> tutorialModels = new LinkedList<Tutorial>();
 
 	private Form<?> form = new Form<>("form");
 	private Form<Tutorial> form2;
+	private ModalWindow modalWindowDel;
 
 	private Tutorial tutorialFiltrar;
 	private Tutorial tutorial;
@@ -72,11 +73,19 @@ public class TelaPrincipal extends HomePage {
 
 		listaTutoriais = tutorialService.listar();
 		listaCategorias = categoriaService.listar();
+
+		// Modal Window do delete
+		modalWindowDel = new ModalWindow("modalWindowDel");
+		// Tamanho
+		modalWindowDel.setInitialHeight(250);
+		modalWindowDel.setInitialWidth(350);
+		modalWindowDel.setOutputMarkupId(true);
+		add(modalWindowDel);
 //		Tutorial t = tutorialService.buscarPorId(0);
 //		System.out.println(t.getTitle());
 
 		add(container());
-		
+
 		/*
 		 * modalWindow = new ModalWindow("modalWindow"); // Tamanho do Modal do
 		 * tutorialPanel modalWindow.setInitialHeight(700);
@@ -137,17 +146,17 @@ public class TelaPrincipal extends HomePage {
 			}
 		};
 
-		listView = new PageableListView<Tutorial>("listView", atualizarLista, 15) {
+		listView = new PageableListView<Tutorial>("listView", atualizarLista, 10) {
 
 			private static final long serialVersionUID = -8503564664744203394L;
 
 			@Override
 			protected void populateItem(ListItem<Tutorial> item) {
-				Tutorial user = item.getModelObject();
-				item.add(new Label("title", user.getTitle()));
-//				item.add(editando(user));
-//				item.add(remover(user.getId()));
-				item.add(visualizar(item.getIndex(), user));
+				Tutorial tutorial = item.getModelObject();
+				item.add(new Label("title", tutorial.getTitle()));
+				item.add(editando(tutorial));
+				item.add(remover(tutorial.getId()));
+				item.add(visualizar(item.getIndex(), tutorial));
 			}
 		};
 		add(listView);
@@ -176,12 +185,14 @@ public class TelaPrincipal extends HomePage {
 		title.setOutputMarkupId(true);
 		categoria = new Categoria();
 
-		DropDownChoice<Categoria> categorias = new DropDownChoice<Categoria>("categoria",
-				new PropertyModel<Categoria>(tutorial, "categoria"), listaCategorias,
-				new ChoiceRenderer<Categoria>("nome"));
 		
+		 DropDownChoice<Categoria> categorias = new
+		 DropDownChoice<Categoria>("categoria", new PropertyModel<Categoria>(tutorial,
+		 "categoria"), listaCategorias, new ChoiceRenderer<Categoria>("nome"));
+		
+
 		form2.add(title, categorias);
-		
+
 		AjaxSubmitLink ajaxSubmitLink = new AjaxSubmitLink("filtrar", form2) {
 
 			private static final long serialVersionUID = 8104552052869900594L;
@@ -193,8 +204,14 @@ public class TelaPrincipal extends HomePage {
 				if (tutorialFiltrar.getTitle() != null && !tutorialFiltrar.getTitle().equals("")) {
 					search.addFilterLike("title", "%" + tutorialFiltrar.getTitle() + "%");
 				}
+				/*
+				 * if(tutorialFiltrar.getCategoria().getNome() != null &&
+				 * !tutorialFiltrar.getCategoria().getNome().equals("")) {
+				 * search.addFilterLike("categoria.nome", "%" +
+				 * tutorialFiltrar.getCategoria().getNome() + "%"); }
+				 */
 
-				tutorialModels = tutorialService.search(search);
+				listaTutoriais = tutorialService.search(search);
 				target.add(listContainer);
 				super.onSubmit(target, form);
 			}
@@ -205,25 +222,77 @@ public class TelaPrincipal extends HomePage {
 		return form2;
 
 	}
-	
+
 	// Enviando para Pagina TutorialPage
-		AjaxLink<TutorialPage> visualizar(final int index, final Tutorial tutorial) {
-			AjaxLink<TutorialPage> button1 = new AjaxLink<TutorialPage>("vis") {
+	AjaxLink<TutorialPage> visualizar(final int index, final Tutorial tutorial) {
+		AjaxLink<TutorialPage> button1 = new AjaxLink<TutorialPage>("vis") {
 
-				private static final long serialVersionUID = 1L;
+			private static final long serialVersionUID = 1L;
 
-				@Override
-				public void onClick(AjaxRequestTarget target) {
-					PageParameters parameters = new PageParameters();
-					parameters.add("title", tutorial.getTitle());
-					setResponsePage(TutorialPage.class, parameters);
+			@Override
+			public void onClick(AjaxRequestTarget target) {
+				PageParameters parameters = new PageParameters();
+				parameters.add("title", tutorial.getTitle());
+				parameters.add("editor", tutorial.getEditor());
+				setResponsePage(TutorialPage.class, parameters);
 
-				}
+			}
 
-			};
+		};
 
-			button1.setOutputMarkupId(true);
-			form.add(button1);
-			return button1;
-		}
+		button1.setOutputMarkupId(true);
+		form.add(button1);
+		return button1;
+	}
+
+	// Removendo
+	public Component remover(final Integer index) {
+
+		AjaxLink<Tutorial> button = new AjaxLink<Tutorial>("excluir") {
+			Tutorial answer = new Tutorial();
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void onClick(AjaxRequestTarget target) {
+				DeletTutorial deletTutorial = new DeletTutorial(modalWindowDel.getContentId(), answer) {
+
+					private static final long serialVersionUID = 1L;
+
+					public void executarAoExcluir(AjaxRequestTarget target, Tutorial tutorial) {
+						if (tutorial.isAnswer() == true) {
+							// enderecoService.excluir(index);
+							tutorialService.excluir(index);
+							listaTutoriais = tutorialService.listar();
+							target.appendJavaScript("sucessDelet();");
+							target.add(listContainer);
+						}
+						modalWindowDel.close(target);
+					};
+				};
+				deletTutorial.setOutputMarkupId(true);
+				modalWindowDel.setContent(deletTutorial);
+				modalWindowDel.show(target);
+			}
+		};
+		button.setOutputMarkupId(true);
+		return button;
+	}
+
+	// Editando
+	AjaxLink<Tutorial> editando(Tutorial tutorial) {
+		AjaxLink<Tutorial> editar = new AjaxLink<Tutorial>("alterar") {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void onClick(AjaxRequestTarget target) {
+				setResponsePage(TutorialForm.class);
+				target.add(listContainer);
+			}
+		};
+		editar.setOutputMarkupId(true);
+		return editar;
+	}
+
 }

@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html>
 <wicket:head>
-	<script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
+	<!-- <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script> -->
+	<script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
+	<script>
+		tinymce.init({
+			selector : 'textarea',
+			plugins : 'image' 
+		});
+	</script>
 </wicket:head>
 <body>
 	<wicket:extend>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<script type="text/javascript">
+			function sucessCadastro() {
+				swal("Successfully registered!", "!", "success");
+			}
+			function sucessDelet() {
+				swal("Registered deleted!", "!", "success");
+			}
+		</script>
+
 		<div class="container-fluid" style="z-index: 0">
 			<br /> <span id="" class="alert-danger"></span>
 			<div class="card">

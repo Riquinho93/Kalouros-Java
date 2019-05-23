@@ -29,7 +29,6 @@ public class TutorialForm extends HomePage {
 	private List<Tutorial> listaTutoriais = new ArrayList<>();
 	private Categoria categoria;
 	private Form<Tutorial> form;
-	private Tutorial tutorial;
 
 	@SpringBean(name = "categoriaService")
 	private CategoriaService categoriaService;
@@ -37,10 +36,12 @@ public class TutorialForm extends HomePage {
 	@SpringBean(name = "tutorialService")
 	private TutorialService tutorialService;
 
-
 	public TutorialForm() {
-		
-		tutorial = new Tutorial();
+		this(new Tutorial());
+	}
+	
+	public TutorialForm(Tutorial tutorial) {
+
 		listaCategorias = categoriaService.listar();
 
 		form = new Form<Tutorial>("form", new CompoundPropertyModel<Tutorial>(tutorial));

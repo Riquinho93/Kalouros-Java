@@ -8,6 +8,16 @@
 </wicket:head>
 <body>
 	<wicket:extend>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<script type="text/javascript">
+			function sucessCadastro() {
+				swal("Cadastrado com sucesso!", "!", "success");
+			}
+			function sucessDelet() {
+				swal("Cadastrado excluido com sucesso!", "!", "success");
+			}
+		</script>
+
 		<div class="card">
 			<h5 class="card-header">Tutorials</h5>
 			<div class="card-body">
@@ -19,8 +29,8 @@
 					</div> -->
 						<div class="col-md-3">
 							<label for="category" class="text">Category: *</label> <select
-								wicket:id="categoria" type="text" class="form-control" name="category"
-								placeholder="Category"></select>
+								wicket:id="categoria" type="text" class="form-control"
+								name="category" placeholder="Category"></select>
 						</div>
 						<div class="col-md-4">
 							<label for="name" class="text">Name: *</label> <input
@@ -65,10 +75,11 @@
 								class="rounded-circle" id="teste" alt="Tutorial de CSS"
 								title="Map" width="150" height="150" /></a>
 							<figcaption>
-								<a wicket:id="title"></a><a class="btn btn-default"
-									rel="tooltip" title="Edit"> <i class="fas fa-pencil-alt"></i>
-								</a><a class="btn btn-default modal-confirm" title="delet"> <i
-									class="fa fa-trash"></i>
+								<a wicket:id="title"></a><a wicket:id="alterar"
+									class="btn btn-default" rel="tooltip" title="Edit"> <i
+									class="fas fa-pencil-alt"></i>
+								</a><a wicket:id="excluir" class="btn btn-default modal-confirm"
+									title="delet"> <i class="fa fa-trash"></i>
 								</a>
 							</figcaption>
 						</figure>
@@ -192,7 +203,7 @@
 					</div> -->
 				</div>
 			</div>
-			<!-- 	<div wicket:id="modalWindow"></div> -->
+			<div wicket:id="modalWindowDel"></div>
 		</div>
 	</wicket:extend>
 </body>

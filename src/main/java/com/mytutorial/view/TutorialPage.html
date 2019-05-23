@@ -6,9 +6,15 @@
 </wicket:head>
 <body>
 	<wicket:extend>
-	<h2>Title Tutorial </h2>
-	<br /><br /><br />
-	<h3>Body</h3><br /><br /><br /><br />
+	<h2 wicket:id="title">Title Tutorial </h2>
+	<br />
+	<h3>Body</h3><br />
+	<p wicket:id="editor" /><br /><br /><br />
+	<h2>Comments</h2>
+	<div class="col-md-6">
+		<textArea rows="4" cols="80"></textArea><br />
+		<button class="btn btn-dark">Comment</button>
+	</div>
 	</wicket:extend>
 </body>
 </html>
