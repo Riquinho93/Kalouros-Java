@@ -1,15 +1,22 @@
 package com.mytutorial.view;
 
+import java.util.List;
+
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
+import org.apache.wicket.markup.html.form.ChoiceRenderer;
+import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.LoadableDetachableModel;
 
+import com.mytutorial.model.Perfil;
 import com.mytutorial.model.Usuario;
 
 public class UsuarioPanel extends Panel {
@@ -44,7 +51,19 @@ public class UsuarioPanel extends Panel {
 		confirmarSenha.setRequired(true);
 
 		form.add(nome, email, senha, confirmarSenha);
+		
+		ChoiceRenderer<Perfil> renderer2 = new ChoiceRenderer<Perfil>("descricao");
+		IModel<List<Perfil>> model2 = new LoadableDetachableModel<List<Perfil>>() {
 
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected List<Perfil> load() {
+				return Perfil.perfil();
+			}
+		};
+		DropDownChoice<Perfil> perfil = new DropDownChoice<>("perfil", model2, renderer2);
+		
 		AjaxButton button = new AjaxButton("submit") {
 
 			private static final long serialVersionUID = 994698440577863113L;
@@ -62,7 +81,7 @@ public class UsuarioPanel extends Panel {
 		};
 		add(feedbackPanel);
 		button.setOutputMarkupId(true);
-		form.add(nome);
+		form.add(nome, perfil);
 		form.add(button);
 		add(form);
 		voltar();

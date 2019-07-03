@@ -33,7 +33,7 @@ public class CategoriaForm extends HomePage {
 	private ModalWindow modalCategoria;
 	private ModalWindow modalWindowDel;
 	private PageableListView<Categoria> listView = null;
-	private List<Categoria> categoriaModels = new LinkedList<Categoria>();
+	private List<Categoria> listaCategorias = new LinkedList<Categoria>();
 	// Criando um container
 	private WebMarkupContainer listContainer = null;
 	private LoadableDetachableModel<List<Categoria>> loadList;
@@ -44,7 +44,7 @@ public class CategoriaForm extends HomePage {
 
 	public CategoriaForm() {
 
-		categoriaModels = categoriaService.listar();
+		listaCategorias = categoriaService.listar();
 
 		// Metodo do container
 		add(divConteiner());
@@ -77,11 +77,10 @@ public class CategoriaForm extends HomePage {
 
 					public void executarAoSalvar(AjaxRequestTarget target, Categoria categoria) {
 						categoriaService.SalvarOuAlterar(categoria);
-						categoriaModels.add(categoria);
-						categoriaModels = categoriaService.listar();
+						listaCategorias.add(categoria);
+						listaCategorias = categoriaService.listar();
 						target.appendJavaScript("sucessCadastro();");
 						target.add(listContainer);
-
 						modalCategoria.close(target);
 					}
 				};
@@ -104,7 +103,7 @@ public class CategoriaForm extends HomePage {
 			private static final long serialVersionUID = 1L;
 
 			protected List<Categoria> load() {
-				return categoriaModels;
+				return listaCategorias;
 			}
 		};
 		// Criando a lista View
@@ -189,7 +188,7 @@ public class CategoriaForm extends HomePage {
 						if (categoriaModel.isAnswer() == true) {
 							// colecaoModels.remove(index);
 							categoriaService.excluir(index);
-							categoriaModels = categoriaService.listar();
+							listaCategorias = categoriaService.listar();
 							target.appendJavaScript("sucessDelet();");
 							target.add(listContainer);
 						}
@@ -224,7 +223,7 @@ public class CategoriaForm extends HomePage {
 					search.addFilterLike("nome", "%" + categoriaForm.getNome() + "%");
 				}
 
-				categoriaModels = categoriaService.search(search);
+				listaCategorias = categoriaService.search(search);
 				target.add(listContainer);
 				super.onSubmit(target, form);
 			}

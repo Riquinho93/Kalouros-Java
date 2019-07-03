@@ -6,15 +6,29 @@
 </wicket:head>
 <body>
 	<wicket:extend>
-	<h2 wicket:id="title">Title Tutorial </h2>
-	<br />
-	<h3>Body</h3><br />
-	<p wicket:id="editor" /><br /><br /><br />
-	<h2>Comments</h2>
-	<div class="col-md-6">
-		<textArea rows="4" cols="80"></textArea><br />
-		<button class="btn btn-dark">Comment</button>
-	</div>
+		<h2 wicket:id="title">Title Tutorial</h2>
+		<br />
+		<br />
+		<p wicket:id="editor" />
+		<br />
+		<br />
+		<br />
+		<form wicket:id="ComentarioForm">
+			<h2>Comments</h2>
+			<div class="col-md-6">
+				<textArea wicket:id="text" rows="4" cols="80"></textArea>
+				<br />
+				<!--  <input type="text" class="nospam" onfocus="getElementById('formsubmit').focus();"/> -->
+				<button class="btn btn-dark" id="formsubmit">Comment</button>
+			</div>
+		</form>
+		<p>
+			<span wicket:id="comentarios">
+				<p>
+					<span wicket:id="data">1/1/2004</span><br> <span
+						wicket:id="text">Comment text goes here.</span>
+				</p>
+			</span>
 	</wicket:extend>
 </body>
 </html>

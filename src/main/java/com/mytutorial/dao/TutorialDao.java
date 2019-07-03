@@ -13,7 +13,7 @@ public class TutorialDao extends GenericDao<Tutorial, Serializable>{
 	
 	@SuppressWarnings("unchecked")
 	public List<Tutorial> listar() {
-		String hql = "select f from Tutorial f";
+		String hql = "select f from Tutorial f order by title";
 		Query query = getSessionFactory().getCurrentSession().createQuery(hql);
 		List<Tutorial> userList = query.list();
 		return userList;

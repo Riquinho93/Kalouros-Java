@@ -1,7 +1,9 @@
 package com.mytutorial.model;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,6 +34,11 @@ public class Tutorial implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "idCategoria")
 	private Categoria categoria;
+
+	private File image;
+
+	@OneToMany(mappedBy = "tutorial", targetEntity = Comentario.class)
+	private List<Comentario> listaComentarios;
 
 	private String editor;
 
@@ -80,6 +87,22 @@ public class Tutorial implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public List<Comentario> getListaComentarios() {
+		return listaComentarios;
+	}
+
+	public void setListaComentarios(List<Comentario> listaComentarios) {
+		this.listaComentarios = listaComentarios;
+	}
+
+	public File getImage() {
+		return image;
+	}
+
+	public void setImage(File image) {
+		this.image = image;
 	}
 
 }

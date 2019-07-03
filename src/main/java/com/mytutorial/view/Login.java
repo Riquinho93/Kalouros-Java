@@ -59,7 +59,12 @@ public class Login extends WebPage {
 				if (lista != null && !lista.isEmpty()) {
 					Usuario usuario = lista.get(0);
 					getSession().setAttribute("userName", lista.get(0));
-					setResponsePage(new TelaPrincipal(usuario));
+					if(usuario.getPerfil().equals(usuario.getPerfil().ADMIN)) {
+						setResponsePage(new TelaPrincipal(usuario));
+					}else {
+						setResponsePage(new Apresentacao());
+					}
+					
 				} else {
 
 					alertFeedback.error("Login Incorreto");

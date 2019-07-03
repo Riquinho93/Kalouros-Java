@@ -38,6 +38,7 @@
 				<value>com.mytutorial.model.Usuario</value>
 				<value>com.mytutorial.model.Categoria</value>
 				<value>com.mytutorial.model.Tutorial</value>
+				<value>com.mytutorial.model.Comentario</value>
 			</list>
 		</property>
 		<!-- configurações para o hibernate properties -->
@@ -79,7 +80,16 @@
 		class="com.mytutorial.service.TutorialService">
 		<property name="tutorialDao" ref="tutorialDao"></property>
 	</bean>
+	
+	<!-- <bean id="comentarioDao" class="com.mytutorial.dao.ComentarioDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 
+	<bean id="comentarioService"
+		class="com.mytutorial.service.ComentarioService">
+		<property name="comentarioDao" ref="comentarioDao"></property>
+	</bean>
+ -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />

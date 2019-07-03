@@ -6,18 +6,16 @@ import java.util.List;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
-import com.mytutorial.model.Categoria;
-
+import com.mytutorial.model.Comentario;
 
 @Repository
-public class CategoriaDao extends GenericDao<Categoria, Serializable> {
+public class ComentarioDao extends GenericDao<Comentario, Serializable>{
 	
 	@SuppressWarnings("unchecked")
-	public List<Categoria> listar() {
-		String hql = "select f from Categoria f order by nome";
+	public List<Comentario> listar() {
+		String hql = "select f from Comentario f order by text";
 		Query query = getSessionFactory().getCurrentSession().createQuery(hql);
-		List<Categoria> userList = query.list();
+		List<Comentario> userList = query.list();
 		return userList;
 	}
-
 }

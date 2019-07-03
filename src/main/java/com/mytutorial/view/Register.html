@@ -12,46 +12,33 @@
 	<div class="container">
 		<br />
 		<div class="centerdiv">
-			<h1>Make your Registry</h1>
-			<div class="container-fluid">
+			<h5 style="float: middle;">Make your Registry</h5>
 				<form wicket:id="form">
-					<div class="row">
-						<div class="col-md-6">
-							<label for="nome" class="text">Name: *</label> <input type="text"
-								class="form-control" wicket:id="nome" name="nome"
+						<div class="col">
+							<label class="text">Name: *</label> <input type="text"
+								class="form-group inputbox" wicket:id="nome" name="nome"
 								placeholder="Name" />
 						</div>
-						<div class="col-md-6">
-							<label class="text">Email:</label> <input type="text"
-								class="form-control" wicket:id="email"
+						<div class="col">
+							<label class="text">Email: *</label> <input type="text"
+								class="form-group inputbox" wicket:id="email"
 								placeholder="example@example.com" />
 						</div>
-						<div class="col-md-6">
+						<div class="col">
 							<label class="text">Password: *</label> <input type="password"
-								class="form-control" wicket:id="senha"
+								class="form-group inputbox" wicket:id="senha"
 								placeholder="password" />
 						</div>
-						<div class="col-md-6">
+						<div class="col">
 							<label class="text">Confirm password: *</label> <input wicket:id="confirmarSenha"
-								type="password" class="number form-control"
+								type="password" class="form-group inputbox" 
 								placeholder="Confirm password" />
 						</div>
-						
-					</div>
 					<br />
 					<button wicket:id="submit" class="btn btn-success" type="submit">Sig up</button>
 					<button wicket:id="voltar" class="btn btn-primary" type="submit">back</button>
 				</form>
-			</div>
 			<br />
-		</div>
-		<!-- RODAPE -->
-		<div class="row">
-			<div class="col rodape">
-				<br /> <br />
-				<p>Developing tutorial System &#174;
-					Rights reserved</p>
-			</div>
 		</div>
 		
 	</div>

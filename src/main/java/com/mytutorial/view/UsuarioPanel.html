@@ -28,11 +28,15 @@
 								class="form-control" wicket:id="email"
 								placeholder="example@example.com" />
 						</div>
-						<div class="col-md-6">
+						<div class="form-group col-sm-3">
+							<Label class="text">Perfil: *</label> <select
+								wicket:id="perfil" class="form-control"></select>
+						</div>
+						<div class="col-md-3">
 							<label class="text">Password: *</label> <input type="password"
 								class="form-control" wicket:id="senha" placeholder="password" />
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-3">
 							<label class="text">Confirm password: *</label> <input
 								wicket:id="confirmarSenha" type="password"
 								class="number form-control" placeholder="Confirm password" />
@@ -40,8 +44,8 @@
 					</div>
 					<!-- </form> -->
 					<br />
-					<button wicket:id="submit" class="btn btn-success" type="submit">Salvar</button>
-					<button wicket:id="voltar" type="button" class="btn btn-primary">Voltar</button>
+					<button wicket:id="submit" class="btn btn-success" type="submit">Save</button>
+					<button wicket:id="voltar" type="button" class="btn btn-primary">Cancel</button>
 				</form>
 			</div>
 		</div>

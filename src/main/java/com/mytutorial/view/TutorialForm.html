@@ -3,12 +3,12 @@
 <wicket:head>
 	<!-- <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script> -->
 	<script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
-	<script>
+	 <script>
 		tinymce.init({
 			selector : 'textarea',
 			plugins : 'image' 
 		});
-	</script>
+	</script> 
 </wicket:head>
 <body>
 	<wicket:extend>
@@ -40,10 +40,10 @@
 						</div>
 
 						<div class="form-group col-md-4">
-							<input type="file" name="customFile"
-								class="custom-file-input form-control" id="customFile">
-							<label class="custom-file-label form-control" for="customFile">Choose
-								image</label>
+							<input wicket:id="image" type="file" name="Image"
+								 id="customFile" />
+							<!-- <label class="custom-file-label form-control" for="customFile">Choose
+								image</label> -->
 						</div>
 
 						<div class="form-group col-md-12">
@@ -58,10 +58,10 @@
 								class="btn btn-primary">Cancel</button>
 						</div>
 					</form>
-					<script src="creditor.js"></script>
+					<!-- <script src="creditor.js"></script>
 					<script>
-						CKEDITOR.replace('editor1');
-					</script>
+						CKEDITOR.replace('editor2');
+					</script> -->
 				</div>
 			</div>
 			<br /> <br />

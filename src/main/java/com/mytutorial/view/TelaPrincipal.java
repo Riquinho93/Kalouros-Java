@@ -185,13 +185,11 @@ public class TelaPrincipal extends HomePage {
 		title.setOutputMarkupId(true);
 		categoria = new Categoria();
 
-		
-		 DropDownChoice<Categoria> categorias = new
-		 DropDownChoice<Categoria>("categoria", new PropertyModel<Categoria>(tutorial,
-		 "categoria"), listaCategorias, new ChoiceRenderer<Categoria>("nome"));
-		
+		DropDownChoice<Categoria> categoria = new DropDownChoice<Categoria>("categoria",
+				new PropertyModel<Categoria>(tutorial, "categoria"), listaCategorias,
+				new ChoiceRenderer<Categoria>("nome"));
 
-		form2.add(title, categorias);
+		form2.add(title, categoria);
 
 		AjaxSubmitLink ajaxSubmitLink = new AjaxSubmitLink("filtrar", form2) {
 
@@ -204,10 +202,11 @@ public class TelaPrincipal extends HomePage {
 				if (tutorialFiltrar.getTitle() != null && !tutorialFiltrar.getTitle().equals("")) {
 					search.addFilterLike("title", "%" + tutorialFiltrar.getTitle() + "%");
 				}
+
 				/*
-				 * if(tutorialFiltrar.getCategoria().getNome() != null &&
+				 * if (tutorialFiltrar.getCategoria().getNome() != null &&
 				 * !tutorialFiltrar.getCategoria().getNome().equals("")) {
-				 * search.addFilterLike("categoria.nome", "%" +
+				 * search.addFilterLike("categoria", "%" +
 				 * tutorialFiltrar.getCategoria().getNome() + "%"); }
 				 */
 
@@ -232,6 +231,7 @@ public class TelaPrincipal extends HomePage {
 			@Override
 			public void onClick(AjaxRequestTarget target) {
 				PageParameters parameters = new PageParameters();
+				parameters.add("id", tutorial.getId());
 				parameters.add("title", tutorial.getTitle());
 				parameters.add("editor", tutorial.getEditor());
 				setResponsePage(TutorialPage.class, parameters);
@@ -287,8 +287,7 @@ public class TelaPrincipal extends HomePage {
 
 			@Override
 			public void onClick(AjaxRequestTarget target) {
-				setResponsePage(TutorialForm.class);
-				target.add(listContainer);
+				setResponsePage(new TutorialForm(tutorial));
 			}
 		};
 		editar.setOutputMarkupId(true);
