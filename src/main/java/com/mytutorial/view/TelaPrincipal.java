@@ -59,7 +59,6 @@ public class TelaPrincipal extends HomePage {
 	private Tutorial tutorial;
 
 	private WebMarkupContainer listContainer;
-//	private ModalWindow modalWindow;
 
 	private LoadableDetachableModel<List<Tutorial>> atualizarLista;
 
@@ -86,35 +85,9 @@ public class TelaPrincipal extends HomePage {
 
 		add(container());
 
-		/*
-		 * modalWindow = new ModalWindow("modalWindow"); // Tamanho do Modal do
-		 * tutorialPanel modalWindow.setInitialHeight(700);
-		 * modalWindow.setInitialWidth(1100); modalWindow.setOutputMarkupId(true);
-		 * add(modalWindow);
-		 */
-
-		// Criando o botão para o modal do Tutorial
-		/*
-		 * add(new AjaxLink<String>("abrirModal") {
-		 * 
-		 * private static final long serialVersionUID = 1L;
-		 * 
-		 * @Override public void onClick(AjaxRequestTarget target) { TutorialPanel
-		 * tutorialPanel = new TutorialPanel(modalWindow.getContentId()) { private
-		 * static final long serialVersionUID = 1L;
-		 * 
-		 * public void executarAoSalvar(AjaxRequestTarget target, Tutorial tutorial) {
-		 * 
-		 * modalWindow.close(target); } }; tutorialPanel.setOutputMarkupId(true);
-		 * add(tutorialPanel); modalWindow.setContent(tutorialPanel);
-		 * modalWindow.show(target); }
-		 * 
-		 * });
-		 */
 		add(tutorialForm());
 		add(filtrar());
 
-//		add(form);
 	}
 
 	protected AjaxLink<TutorialForm> tutorialForm() {
@@ -167,16 +140,6 @@ public class TelaPrincipal extends HomePage {
 		return listContainer;
 
 	}
-
-	/*
-	 * protected AjaxLink<TutorialPage> tutorial() { AjaxLink<TutorialPage> ajaxLink
-	 * = new AjaxLink<TutorialPage>("tutorialPage") { private static final long
-	 * serialVersionUID = 1L;
-	 * 
-	 * @Override public void onClick(AjaxRequestTarget target) {
-	 * setResponsePage(TutorialPage.class); } }; ajaxLink.setOutputMarkupId(true);
-	 * add(ajaxLink); return ajaxLink; }
-	 */
 
 	public Form<Tutorial> filtrar() {
 		tutorialFiltrar = new Tutorial();

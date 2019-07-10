@@ -21,14 +21,13 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import com.googlecode.genericdao.search.Search;
 import com.mytutorial.HomePage;
-import com.mytutorial.model.Endereco;
 import com.mytutorial.model.Usuario;
 import com.mytutorial.service.UsuarioService;
 
 public class UsuarioForm extends HomePage {
 
-	private static final long serialVersionUID = 2474313326427632580L;
 
+	private static final long serialVersionUID = 1L;
 	// private Form<Endereco> formEnd;
 	private Form<Usuario> form2;
 	private List<Usuario> listaUsuarios = new ArrayList<>();

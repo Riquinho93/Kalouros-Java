@@ -49,11 +49,7 @@
 			<artifactId>wicket-extensions</artifactId>
 			<version>${wicket.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.wicket</groupId>
-			<artifactId>wicket-datetime</artifactId>
-			<version>${wicket.version}</version>
-		</dependency>
+
 		<!-- Spring framework -->
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
@@ -112,12 +108,25 @@
 			<version>3.3.1</version>
 		</dependency>
 
-	<!-- Tinymce Editor -->
+		<!-- Tinymce Editor -->
+
 		<dependency>
 			<groupId>org.wicketstuff</groupId>
-			<artifactId>wicketstuff-tinymce</artifactId>
-			<version>1.5.4</version>
+			<artifactId>wicketstuff-tinymce4</artifactId>
+			<version>8.5.0</version>
 		</dependency>
+
+
+		<!-- <dependency> <groupId>org.wicketstuff</groupId> <artifactId>wicketstuff-serializer-common</artifactId> 
+			<version>9.0.0-M2</version> </dependency> <dependency> <groupId>org.wicketstuff</groupId> 
+			<artifactId>wicketstuff-tinymce</artifactId> <version>1.5.4</version> </dependency> -->
+		<dependency>
+			<groupId>org.wicketstuff</groupId>
+			<artifactId>wicketstuff-core</artifactId>
+			<version>8.5.0</version>
+			<type>pom</type>
+		</dependency>
+
 
 		<!-- Hibernate -->
 		<dependency>

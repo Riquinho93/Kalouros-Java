@@ -20,6 +20,7 @@ public class HomePage extends WebPage {
 			setResponsePage(Login.class);
 			return;
 		}
+	
 
 		add(telaPrincipal());
 		add(categoriaForm());
@@ -34,7 +35,7 @@ public class HomePage extends WebPage {
 				setResponsePage(TelaPrincipal.class);
 			}
 		});
-
+		
 	}
 
 	private AjaxLink<TelaPrincipal> telaPrincipal() {

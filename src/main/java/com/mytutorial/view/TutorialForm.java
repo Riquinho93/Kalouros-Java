@@ -21,6 +21,8 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.request.resource.CssResourceReference;
+import org.apache.wicket.request.resource.ResourceReference;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.lang.Bytes;
 import org.apache.wicket.util.value.ValueMap;
@@ -33,11 +35,12 @@ import com.mytutorial.model.Tutorial;
 import com.mytutorial.service.CategoriaService;
 import com.mytutorial.service.TutorialService;
 
-import wicket.contrib.tinymce.TinyMceBehavior;
-import wicket.contrib.tinymce.ajax.TinyMceAjaxButton;
-import wicket.contrib.tinymce.ajax.TinyMceAjaxSubmitModifier;
-import wicket.contrib.tinymce.settings.TinyMCESettings;
-import wicket.contrib.tinymce.settings.TinyMCESettings.Theme;
+import wicket.contrib.tinymce4.TinyMceBehavior;
+import wicket.contrib.tinymce4.ajax.TinyMceAjaxButton;
+import wicket.contrib.tinymce4.image.ImageUploadPanel;
+import wicket.contrib.tinymce4.settings.TinyMCESettings;
+import wicket.contrib.tinymce4.settings.TinyMCESettings.Theme;
+import wicket.contrib.tinymce4.settings.Toolbar;
 
 public class TutorialForm extends HomePage {
 
@@ -69,12 +72,24 @@ public class TutorialForm extends HomePage {
 		// tinymce
 
 //		editor.add(new TinyMceBehavior(new TinyMCESettings(Theme.advanced)));
-		
-		 // Add one file input field
-        FileUploadField image = new FileUploadField("image");
 
+		// Add one file input field
+		// FileUploadField image = new FileUploadField("image");
+
+		TinyMCESettings mceSettings = new TinyMCESettings(Theme.modern);
+//		mceSettings.addCustomSetting("readonly:true");
 		editor.add(StringValidator.maximumLength(4000));
-
+		
+		mceSettings.addToolbar(new Toolbar(
+				"toolbar",
+				"insertfile undo redo | styleselect | bold italic | image | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | imageupload"));
+		mceSettings.addPlugins("imageupload");
+		mceSettings.addPlugins("image");
+		
+		
+		
+		editor.add(new TinyMceBehavior(mceSettings));
+//		editor.add(new TinyMceBehavior());
 		title.setOutputMarkupId(true);
 		editor.setOutputMarkupId(true);
 
@@ -83,21 +98,21 @@ public class TutorialForm extends HomePage {
 		DropDownChoice<Categoria> categorias = new DropDownChoice<Categoria>("categoria",
 				new PropertyModel<Categoria>(tutorial, "categoria"), listaCategorias,
 				new ChoiceRenderer<Categoria>("nome"));
-		
-		form.add(title, editor, categorias, image);
-		form.add(new TinyMceAjaxButton("salvar")
-		{
-          
+
+		form.add(title, editor, categorias);
+	//	add(new ImageUploadPanel("uploadPanel"));
+		form.add(new TinyMceAjaxButton("salvar") {
+
 			private static final long serialVersionUID = 1L;
 
 			@Override
-            protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-            	super.onSubmit(target, form);
-            	listaTutoriais.add(tutorial); 
-            	tutorialService.SalvarOuAlterar(tutorial);
-				target.add(editor, title, image);
+			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+				super.onSubmit(target, form);
+				listaTutoriais.add(tutorial);
+				tutorialService.SalvarOuAlterar(tutorial);
+				target.add(editor, title);
 				setResponsePage(TelaPrincipal.class);
-            }
+			}
 		});
 
 		/*
