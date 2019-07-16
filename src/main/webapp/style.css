@@ -137,5 +137,6 @@ header a:hover{
 .rodape p {
 	margin: 5px 5px;
 	text-align: center;
+	font: 15px/1.5 Arial, Helvetica, sans-serif;
 	background-color: :#f4f4f4;
 }

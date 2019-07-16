@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 </wicket:head>
+
 <body>
 	<wicket:extend>
 		<h2 wicket:id="title">Title Tutorial</h2>
@@ -14,20 +15,23 @@
 		<br />
 		<br />
 		<form wicket:id="ComentarioForm">
-			<h2>Comments</h2>
+			<h2>Comment</h2>
 			<div class="col-md-6">
 				<textArea wicket:id="text" rows="4" cols="80"></textArea>
 				<br />
 				<!--  <input type="text" class="nospam" onfocus="getElementById('formsubmit').focus();"/> -->
 				<button class="btn btn-dark" id="formsubmit">Comment</button>
 			</div>
-		</form>
+		</form><br />
+		<h2>Comments</h2>
+		<hr />
 		<p>
 			<span wicket:id="comentarios">
 				<p>
 					<span wicket:id="data">1/1/2004</span><br> <span
 						wicket:id="text">Comment text goes here.</span>
 				</p>
+				<hr />
 			</span>
 	</wicket:extend>
 </body>

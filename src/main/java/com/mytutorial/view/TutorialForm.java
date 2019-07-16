@@ -112,6 +112,7 @@ public class TutorialForm extends HomePage {
 				tutorialService.SalvarOuAlterar(tutorial);
 				target.add(editor, title);
 				setResponsePage(TelaPrincipal.class);
+				target.appendJavaScript("sucessCadastro();");
 			}
 		});
 
